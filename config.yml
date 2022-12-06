@@ -1,0 +1,99 @@
+#---------------------------------------------------
+# Config File for Palo Alto Log Cruncher
+#---------------------------------------------------
+
+# Enable Debug Mode (For development only)
+debug: false
+
+# Input CSV File Location:
+input: test.csv
+# Output CSV File Location:
+output: results.csv
+
+# Used to enable deduplication and set the column header to run it on.
+dedupe:
+  enabled: true
+  column: Source address
+
+# Enable DNS reverse lookup to resolve hostnames from one column and add them to a new column:
+dns lookup:
+  enabled: true
+  column from: Source address
+  column to: Hostname
+
+# If you want to use a specific DNS server to look up the host names enable this and enter the address.
+# Otherwise it will use whatever the default DNS server is on the machine running this script.
+  server:
+    enabled: false
+    address: "192.168.141.2"
+
+drop:
+  # Drop all rows that are entirely empty.
+  empty enabled: true
+  # Drop specific rows by column header.
+  columns enabled: true
+  # List of column headers to drop from the CSV file.
+  columns:
+    - Domain
+    - Receive Time
+    - "Serial #"
+    - Type
+    - Threat/Content Type
+    - Generate Time
+    - Rule
+    - Virtual System
+    - Inbound Interface
+    - Outbound Interface
+    - Time Logged
+    - Session ID
+    - Repeat Count
+    - Source Port
+    - NAT Source Port
+    - NAT Destination Port
+    - Flags
+    - IP Protocol
+    - Action
+    - Bytes
+    - Bytes Sent
+    - Bytes Received
+    - Packets
+    - Start Time
+    - Elapsed Time (sec)
+    - Category
+    - Sequence Number
+    - Action Flags
+    - Source Country
+    - Destination Country
+    - Packets Sent
+    - Packets Received
+    - Session End Reason
+    - DG Hierarchy Level 1
+    - DG Hierarchy Level 2
+    - DG Hierarchy Level 3
+    - DG Hierarchy Level 4
+    - Tunnel ID/IMSI
+    - Parent Session ID
+    - SCTP Association ID
+    - SCTP Chunks
+    - SCTP Chunks Sent
+    - SCTP Chunks Received
+    - UUID for rule
+    - HTTP/2 Connection
+    - link_change_count
+    - link_switches
+    - Source Dynamic Address Group
+    - Destination Dynamic Address Group
+    - High Res Timestamp
+    - Subcategory of app
+    - Category of app
+    - Technology of app
+    - Risk of app
+    - Characteristic of app
+    - Container of app
+    - Tunneled app
+    - SaaS of app
+    - Sanctioned State of app
+    - offloaded
+    - Config Version
+    - Device Name
+    - Action Source
