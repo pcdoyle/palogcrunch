@@ -2,7 +2,14 @@
 
 ## Introduction
 
-pacrunch.py is a python application that can "crunch" Palo Alto traffic log files.
+pacrunch.py is a Python application that can "crunch" Palo Alto traffic log files. This script was written for work in a hurry and it is my intention to go over it and fix it in the future, there may be some overlooked bugs. It was a useful script for essentially one niche purpose.
+
+### To Do
+
+* Add example CSV file with input data.
+* Add command line arguments.
+* Clean up the code.
+* Figure out more useful features to add.
 
 ### Features
 
