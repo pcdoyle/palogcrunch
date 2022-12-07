@@ -6,8 +6,8 @@ This program takes in a CSV file of Palo Alto logs and reduces the log size by r
 It will also optionally perform a DNS lookup on the IP address and write the hostname to a new column.
 
 Author: Patrick Doyle (pdoyle@glaciermedia.ca)
-Date: 2022-12-03
-Version: 0.2.1
+Date: 2022-12-05
+Version: 0.2.6
 
 Check requirements.txt for required Python modules.
 Use config.yml to configure the script.
