@@ -6,10 +6,10 @@ pacrunch.py is a Python application that can "crunch" Palo Alto traffic log file
 
 ### To Do
 
-* Add example CSV file with input data.
-* Add command line arguments.
+* Add more command line arguments.
 * Clean up the code.
 * Figure out more useful features to add.
+* Add support for IPv6 (Hard to do currently as my workplace doesn't support IPv6 yet).
 
 ### Features
 

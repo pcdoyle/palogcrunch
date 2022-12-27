@@ -203,7 +203,7 @@ def main():
 # Start of program
 if __name__=="__main__":
     """
-    Use PyYAML to parse the file in the config_file global variable.
+    Use PyYAML and/or the argparse module to parse the config into global variables.
     """
     parser = ArgumentParser()
     parser.add_argument("-d", "--debug", help="turn on more verbose messages when the script encounters errors", action="store_true")
@@ -225,11 +225,12 @@ if __name__=="__main__":
         print('Error: Unable to find',config_file)
         exit()
     except yaml.scanner.ScannerError:
-        print('Error: Unable to parse',config_file)
+        print('Error: Unable to parse',config_file, 'improperly formatted YAML file.')
         exit()
     except:
-        print('Error: Unknown problem with',config_file)
-        print(traceback.format_exc())
+        print('Error: Unknown error while loading',config_file)
+        if debug_flag == True:
+            print(traceback.format_exc())
         exit()
 
     """
@@ -240,7 +241,6 @@ if __name__=="__main__":
     except:
         try:
             debug_flag = config['debug']
-            print('test')
         except:
             debug_flag = False
             print('Debug flag is missing in',config_file,'debugging is off by default.')
