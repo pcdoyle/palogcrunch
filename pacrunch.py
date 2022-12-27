@@ -6,8 +6,8 @@ This program takes in a CSV file of Palo Alto logs and reduces the log size by r
 It will also optionally perform a DNS lookup on the IP address and write the hostname to a new column.
 
 Author: Patrick Doyle (pdoyle@glaciermedia.ca)
-Date: 2022-12-05
-Version: 0.2.6
+Date: 2022-12-27
+Version: 0.2.7
 
 Check requirements.txt for required Python modules.
 Use config.yml to configure the script.
@@ -22,6 +22,8 @@ from ipaddress import ip_address, IPv4Address
 import traceback
 # Python DNS Module
 import dns.resolver, dns.reversename
+# Argument Parser Module
+from argparse import ArgumentParser
 
 # Configuration file location for the program: (Default is config.yml in the same directory as the script.)
 config_file = "config.yml"
@@ -198,10 +200,24 @@ def main():
     print("Program completed successfully, output file written to",output)
     exit()
 
+# Start of program
 if __name__=="__main__":
     """
     Use PyYAML to parse the file in the config_file global variable.
     """
+    parser = ArgumentParser()
+    parser.add_argument("-d", "--debug", help="turn on more verbose messages when the script encounters errors", action="store_true")
+    parser.add_argument("-c", "--config", help="specify a config file, if not set the default is 'config.yml'")
+    args = parser.parse_args()
+
+    if args.config:
+        print("Config file is",args.config)
+        config_file = args.config
+        print('Loading config file',config_file, 'as specified at the command line.')
+    if args.debug:
+        print("Debugging was enabled at the command line.")
+        debug_flag = True
+
     try:
         with open(config_file) as file:
             config = yaml.safe_load(file)
@@ -217,12 +233,17 @@ if __name__=="__main__":
         exit()
 
     """
-    Check the debug_flag global variable to see if the user wants to enable debug mode.
+    Check the debug_flag global variable to see if the user wants to enable debug mode, if not check the config file for the debug flag.
     """
     try:
-        debug_flag = config['debug']
+        debug_flag
     except:
-        debug_flag = False
-        print('Debug flag is missing in',config_file,'debugging is off by default.')
+        try:
+            debug_flag = config['debug']
+            print('test')
+        except:
+            debug_flag = False
+            print('Debug flag is missing in',config_file,'debugging is off by default.')
 
+    print("not echo")
     main()
