@@ -244,6 +244,4 @@ if __name__=="__main__":
         except:
             debug_flag = False
             print('Debug flag is missing in',config_file,'debugging is off by default.')
-
-    print("not echo")
     main()
