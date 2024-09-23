@@ -126,3 +126,9 @@ dmypy.json
 # Test/Dev Folders
 test/
 dev/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
